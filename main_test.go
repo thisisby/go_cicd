@@ -25,7 +25,7 @@ func TestTomHandler(t *testing.T) {
 				status, http.StatusOK)
 		}
 
-		expected := Person{Name: "Tom", Age: 20}
+		expected := Person{Id: 1, Name: "Tom", Age: 20}
 		var result Person
 		if err := json.NewDecoder(rr.Body).Decode(&result); err != nil {
 			t.Fatal(err)

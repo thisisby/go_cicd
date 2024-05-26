@@ -5,9 +5,7 @@ on: [push]
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker Compose stack
@@ -16,6 +14,11 @@ jobs:
       run: docker-compose ps
     - name: Check Docker Compose logs
       run: docker-compose logs
-    - name: Run the tests
-      run: docker-compose exec backend go test -v
+
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the tests
+        run: docker-compose exec backend go test -v
 
