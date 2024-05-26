@@ -15,7 +15,9 @@ services:
       - postgres-data:/var/lib/postgresql/data
   backend:
     container_name: go-cicd-compose
-    image: golang-cicd:v7.0
+    build:
+        context: .
+        dockerfile: Dockerfile
     restart: always
     env_file:
       - .env
